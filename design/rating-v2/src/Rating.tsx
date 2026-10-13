@@ -1,5 +1,5 @@
 'use client';
-import {useRef,useState,type CSSProperties} from 'react';
+import {useRef,useState} from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import {Bell,Trophy,Map,ShoppingBag,UserRound,X,ChevronRight} from 'lucide-react';
 import {motion,MotionConfig,useReducedMotion} from 'motion/react';
@@ -21,7 +21,7 @@ function Avatar({person,large=false}:{person:Participant;large?:boolean}){
 }
 function Podium({people}:{people:Participant[]}){
  return <div className={s.podium} role="img" aria-label="Топ-3: первое место — nedari, второе — Doshirak, третье — jukabernik. Полный рейтинг расположен ниже.">
- {[1,0,2].map(i=><div key={people[i].id} className={`${s.podiumMember} ${s[metals[i]]}`} aria-hidden="true"><div className={s.metalTrail}/><div className={s.avatarRing}><Avatar person={people[i]} large/></div><span className={s.podiumRank}>{i+1}</span></div>)}
+ {[1,0,2].map(i=><div key={people[i].id} className={`${s.podiumMember} ${s[metals[i]]}`} aria-hidden="true"><div className={s.metalTrail}/><div className={s.avatarRing}><Avatar person={people[i]} large/></div></div>)}
  </div>;
 }
 export default function Rating(){
@@ -37,16 +37,16 @@ export default function Rating(){
  <main className={s.main}>
  <nav className={s.tabs} aria-label="Разделы рейтинга"><button type="button" className={`${s.tab} ${s.activeTab}`} aria-current="page">Лиги</button><button type="button" className={s.tab} onClick={e=>demo('Встречи',e)}>Встречи</button><button type="button" className={`${s.tab} ${s.clans}`} disabled><span>Кланы</span><span className={s.soon}>В разработке</span></button></nav>
  <section aria-labelledby="league-title">
- <div className={s.hero}><div className={s.heading}><p className={s.eyebrow}>Ваша лига</p><h1 id="league-title" className={s.title}>ЖЕЛТАЯ</h1><p className={s.countdown}>До обновления лиги <strong>3 дн.</strong></p></div><Podium people={participants}/></div>
+ <div className={s.hero}><div className={s.heading}><p className={s.eyebrow}>Твоя лига</p><h1 id="league-title" className={s.title}>ЖЕЛТАЯ</h1><p className={s.countdown}>До обновления лиги: <strong>3 дн.</strong></p></div><Podium people={participants}/></div>
  <section className={s.ranking} aria-label="Рейтинг участников">
- <div className={s.promotion}><span className={s.promotionDot} aria-hidden="true"/><p><strong>Зона повышения</strong><span>Топ-5 переходят в следующую лигу</span></p></div>
+ <div className={s.promotion}><p><span aria-hidden="true">↑ </span>Зона повышения · топ-5 переходят в следующую лигу</p></div>
  <ol className={s.list}>
  {participants.map((person,i)=><li key={person.id} className={`${s.entry} ${i<5?s.promotionEntry:''}`}>
  {i===5&&<div className={s.boundary}><span/>Граница зоны повышения<span/></div>}
  <button type="button" data-person={person.id} className={`${s.row} ${i===2?s.currentRow:''}`} onClick={e=>{lastTrigger.current=e.currentTarget;setSelected(person)}} aria-label={`${i+1} место, ${person.name}${i===2?', вы':''}, ${person.points} очков. Карточка участника`}>
  <span className={`${s.rank} ${i<3?s.medal+' '+s[metals[i]]:''}`} aria-hidden="true">{i+1}</span>
  <Avatar person={person}/>
- <span className={s.person}><span className={s.nameLine}><span className={s.name} title={person.name}>{person.name}</span>{i===2&&<span className={s.you}>Вы</span>}</span><span className={s.metrics}><span>Ур. {person.level}</span><span className={s.metricDivider} aria-hidden="true"/><span>Навык {person.skill}</span></span></span>
+ <span className={s.person}><span className={s.nameLine}><span className={s.name} title={person.name}>{person.name}</span>{i===2&&<span className={s.you}>Вы</span>}</span><span className={s.metrics}><span>Ур. {person.level}</span><span className={s.metricDivider} aria-hidden="true"/><span aria-label={`Навык ${person.skill}`}>{person.skill}</span></span></span>
  <span className={s.score}><strong>{person.points}</strong><span>очк.</span></span>
  </button></li>)}
  </ol></section></section>
