@@ -1,0 +1,4 @@
+node_modules/
+dist/preview-*.png
+dist/build-meta.json
+.DS_Store

@@ -1,0 +1,14 @@
+import {build} from 'esbuild';
+import {readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';
+await mkdir('dist',{recursive:true});
+const result=await build({entryPoints:['src/main.tsx'],bundle:true,write:false,outdir:'dist',minify:true,format:'iife',jsx:'automatic',target:['es2020'],define:{'process.env.NODE_ENV':'"production"'},legalComments:'inline',metafile:true});
+const js=result.outputFiles.find(f=>f.path.endsWith('.js')).text;
+const css=result.outputFiles.find(f=>f.path.endsWith('.css')).text;
+const font=(await readFile('assets/Manrope-VariableFont_wght.ttf')).toString('base64');
+const logo=(await readFile('assets/archivo.woff2')).toString('base64');
+const global=`@font-face{font-family:Manrope;src:url(data:font/ttf;base64,${font}) format('truetype');font-weight:200 800;font-style:normal;font-display:swap}@font-face{font-family:ArchivoTengus;src:url(data:font/woff2;base64,${logo}) format('woff2');font-weight:100 900;font-display:swap}*{box-sizing:border-box}html,body{margin:0}body{background:#f5f3f0}button{font:inherit}svg{flex-shrink:0}button,span{-webkit-tap-highlight-color:transparent}`;
+const fontLicense=(await readFile('assets/OFL.txt','utf8')).replace(/--/g,'—');
+const html=`<!doctype html><!-- Manrope font license\n${fontLicense}\n--><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light"><title>TENGU’S — Рейтинг · версия 2</title><style>${global}${css}</style></head><body><div id="root"></div><noscript>Для интерактивного макета включите JavaScript в браузере.</noscript><script>${js.replace(/<\/script/gi,'<\\/script')}</script></body></html>`;
+await writeFile('dist/tengu-rating-v2.html',html);
+await writeFile('dist/build-meta.json',JSON.stringify(result.metafile,null,2));
+console.log(`Built one offline HTML: ${Buffer.byteLength(html)} bytes`);

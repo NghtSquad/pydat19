@@ -1,0 +1,115 @@
+{
+  "measurements": [
+    {
+      "width": 320,
+      "overflow": false,
+      "font": [
+        {
+          "family": "Manrope",
+          "status": "loaded"
+        },
+        {
+          "family": "ArchivoTengus",
+          "status": "loaded"
+        }
+      ],
+      "heading": "34px",
+      "podiumFocusable": 0,
+      "rows": 6
+    },
+    {
+      "width": 360,
+      "overflow": false,
+      "font": [
+        {
+          "family": "Manrope",
+          "status": "loaded"
+        },
+        {
+          "family": "ArchivoTengus",
+          "status": "loaded"
+        }
+      ],
+      "heading": "36px",
+      "podiumFocusable": 0,
+      "rows": 6
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "font": [
+        {
+          "family": "Manrope",
+          "status": "loaded"
+        },
+        {
+          "family": "ArchivoTengus",
+          "status": "loaded"
+        }
+      ],
+      "heading": "36px",
+      "podiumFocusable": 0,
+      "rows": 6
+    },
+    {
+      "width": 430,
+      "overflow": false,
+      "font": [
+        {
+          "family": "Manrope",
+          "status": "loaded"
+        },
+        {
+          "family": "ArchivoTengus",
+          "status": "loaded"
+        }
+      ],
+      "heading": "36px",
+      "podiumFocusable": 0,
+      "rows": 6
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "font": [
+        {
+          "family": "Manrope",
+          "status": "loaded"
+        },
+        {
+          "family": "ArchivoTengus",
+          "status": "loaded"
+        }
+      ],
+      "heading": "44px",
+      "podiumFocusable": 0,
+      "rows": 6
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "font": [
+        {
+          "family": "Manrope",
+          "status": "loaded"
+        },
+        {
+          "family": "ArchivoTengus",
+          "status": "loaded"
+        }
+      ],
+      "heading": "44px",
+      "podiumFocusable": 0,
+      "rows": 6
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "dialog": true,
+  "focusRestore": true,
+  "reducedMotion": true,
+  "keyboardFocus": true,
+  "longNames": true,
+  "touchTargets": true,
+  "lastRowVisible": true
+}
